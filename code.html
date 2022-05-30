@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A coding project by JA</title>
+    <title>TacoCat: A coding project by JA</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="/img/ja.jpg" alt="J A" class="d-inline-block align-text-center"
-            width="55" height="40"> App Name</a>
+            width="55" height="40"> TacoCat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,10 +41,10 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/sams91/TacoCat">Git Repo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">About</a>
+                    <a class="nav-link" href="about.html">About</a>
                 </li>
 
             </ul>
@@ -54,21 +54,85 @@
 <!-- main section  -->
 <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for App Name</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for TacoCat</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                    // call hello world
-                    function helloWorld(){
-                    alert("hello World");
-                    }
+                    //get our user input
+function getValue(){
+
+    //make sure the alert is invisible
+    document.getElementById("alert").classList.add("invisible");
+
+    //get user string from the page
+    let userString = document.getElementById("userString").value;
+
+    //check for a palindrome
+    let returnObj = checkForPalindrome(userString);
+
+    //display message to the screen
+    displayMessage(returnObj);
+}
+
+//check if string is a palindrome
+function checkForPalindrome(userString) {
+    
+    //convert everything to lowercase
+    userString = userString.toLowerCase();
+
+    //remove spaces and special characters
+    let regex = /[^a-z0-9]/gi;
+    userString = userString.replace(regex, "");
+
+    let revString = [];
+    let returnObj = {};
+
+    for (let index = userString.length - 1; index >= 0; index--) {
+        revString += userString[index];
+        
+    }
+    if (revString == userString) {
+        returnObj.msg = "Well done! You entered a palindrome!"
+    }
+    else{
+        returnObj.msg = "Sorry, you did not enter a palindrome."
+    }
+
+
+    returnObj.reversed = revString;
+
+    return returnObj;
+}
+
+
+//display a message to the string
+function displayMessage(returnObj) {
+
+    document.getElementById("alertHeader").innerHTML = returnObj.msg;
+    document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed} `;
+    document.getElementById("alert").classList.remove("invisible");
+}
                 </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The code is structured in one function</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                
+                
+                <p>
+                    TacoCat is a simple palindrome checker. The code is structured 
+                    in three functions. First user 
+                    input is received. Then the entire string is made lower 
+                    case and stripped of spaces and any non-alphanumeric characters. 
+                    Next the string is reversed and compared to the original input. 
+                    If they are the same then the input is a palindrome. Results 
+                    are displayed along with the reversed string.
+                </p>
+                <p>
+                    Note the use of “regex” on line 24. This takes user input and 
+                    throws out anything that isn’t a letter or a number, getting 
+                    rid of spaces and punctuation. The “gi” on the end makes this 
+                    regex global and case insensitive. Regex stands for Regular Expression.
+                </p>
             </div>
         </div>
     </div>
